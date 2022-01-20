@@ -3,7 +3,7 @@ package question2;
 import java.lang.Cloneable;
 import java.util.ArrayList;
 
-public class Actor {
+public class Actor implements Cloneable {
 
 	private String name;
 	private String address;
@@ -20,7 +20,6 @@ public class Actor {
 		this.address = address;
 		this.age = age;
 	}
-
 
 	public void setName(String name) {
 		this.name = name;
@@ -67,4 +66,12 @@ public class Actor {
 		System.out.println(toString());
 	}
 
+	public Object clone() throws CloneNotSupportedException {
+		Actor actor = (Actor) super.clone();
+		ArrayList<Film> x = new ArrayList<Film>();
+		for (Film f : my_Films)
+			x.add((Film) f.clone());
+		actor.setFilmList(x);
+		return actor;
+	}
 }
